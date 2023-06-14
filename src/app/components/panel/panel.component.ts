@@ -167,7 +167,8 @@ export class PanelComponent implements OnInit{
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const day = ('0' + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
+   // return `${year}-${month}-${day}`;
+    return `${day}-${month}-${year}`;
   }
 
   /*getAudiencia(id : bigint):any {
@@ -199,7 +200,7 @@ export class PanelComponent implements OnInit{
       console.log(this.solicitudes);
     });*/
   }
-  
+
   // Filtrar las solicitudes según el rango de fechas seleccionado
   filtrarPorFechasSolicitud() {
     if (this.selectedStartDate && this.selectedEndDate) {
@@ -225,11 +226,11 @@ export class PanelComponent implements OnInit{
     }
   }
 
-  
 
-    
 
-  
+
+
+
 
 
 }

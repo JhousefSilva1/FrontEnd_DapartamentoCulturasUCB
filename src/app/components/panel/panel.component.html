@@ -15,14 +15,14 @@
       <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #startDatePicker></mat-datepicker>
     </mat-form-field>
-  
+
     <mat-form-field style="font-size: 20px;margin-top: 20px; width: max-content; height: max-content;">
       <mat-label style="font-size: 20px;">Fecha fin:</mat-label>
       <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="selectedEndDate">
       <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #endDatePicker></mat-datepicker>
     </mat-form-field>
-  
+
     <button class="btn btn-primary mx-2" (click)="filtrarPorFechasSolicitud()" style="font-size: 20px;">Filtrar Solicitud</button>
     <button class="btn btn-primary mx-2" (click)="filtrarPorFechasRevisado()" style="font-size: 20px;">Filtrar Revisado</button>
   </div>
