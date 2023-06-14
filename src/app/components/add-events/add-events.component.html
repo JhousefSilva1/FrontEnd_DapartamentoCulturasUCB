@@ -1,0 +1,202 @@
+<div class="container">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <h1>Agregar Eventos</h1>
+    </blockquote>
+  </figure>
+    <div class="row" >
+      <div class="col-6">
+        <mat-card flex flex-gt-xs="30">
+          <figure class="text-center">
+            <h2>Información del Evento</h2>
+          </figure>
+          <mat-card-content>
+            <form [formGroup]="newEventForm" (ngSubmit)="addNewEvent(newEventForm.value)">
+              <div class="mb-3">
+                <label for="titlePost=" class="form-label">Título</label>
+                <input #titlePost type="text" class="form-control" id="titlePost" formControlName="titlePost" placeholder="Agregue el título de la publicación">
+              </div>
+              <div class="mb-3">
+                <label for="descriptionPost" class="form-label">Descripción</label>
+                <textarea #descriptionPost class="form-control" id="descriptionPost" rows="5" formControlName="descriptionPost" placeholder="Agregue la descripción de la publicación"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="imagesPost" class="form-label">Subir Imágenes</label>
+                <input class="form-control" type="file" id="imagesPost" multiple accept="image/png, .jpeg, .jpg" (change)="imagenmod($event)">
+                <img [src]="cardImageBase64" [width]="300" />
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Agregar Público Destino
+                </button>
+              </div>
+              
+              <h3>Sub Intereses:</h3>
+              <li *ngFor="let interest of categoryaux2">{{interest.nombre}}</li>
+
+              <h3>Edad:</h3>
+              <li *ngFor="let interest of t">{{interest}}</li>
+
+              <h3>Publico:</h3>
+              <li *ngFor="let interest of t2">{{interest}}</li>
+
+              <!-- <li *ngFor="let interest of publicoAux2">{{interest}}</li> -->
+              <!-- preguntar el valr de publicoAux2, e imprimir texto -->
+
+
+
+              <div class="mb-3">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Presencial" [(ngModel)]="selectedModality" [ngModelOptions]="{standalone: true}">
+                  <label class="form-check-label" for="inlineRadio1">Presencial</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Virtual" [(ngModel)]="selectedModality" [ngModelOptions]="{standalone: true}">
+                  <label class="form-check-label" for="inlineRadio2">Virtual</label>
+                </div>
+              </div>
+              <div class="mb-3" *ngIf="selectedModality === 'Presencial'">
+                <label for="location" class="form-label">Agregar Ubicación</label>
+                <input #linklugar type="text" class="form-control" id="location" placeholder="Agregue la ubicación del evento" formControlName="linklugar" [(ngModel)]="lldata">
+              </div>
+              <div class="mb-3" *ngIf="selectedModality === 'Virtual'">
+                <label for="location" class="form-label">Agregar Link del Evento</label>
+                <input #linklugar type="text" class="form-control" id="link" placeholder="Agregue el link del evento" formControlName="linklugar" [(ngModel)]="lldata" >
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-success" type="submit" (click)="postEvent(titlePost.value, descriptionPost.value, lldata)">Agregar Publicación</button>
+                <!--<button class="btn btn-success" type="submit" (click)="testimagen()">Testimagen</button>-->
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-6">
+        <mat-card flex >
+          <figure class="text-center">
+            <h2>Vista Previa</h2>
+          </figure>
+          <mat-card-content>
+             <div>
+              <h1> Titulo: {{ newEventForm.get('titlePost')?.value }}</h1>
+              <!-- <h2>Subtitulo: {{subtitulo}}</h2> -->
+              <h2>Descripción: {{newEventForm.get('descriptionPost')?.value }}</h2>
+              <h2>Imagen: {{newEventForm.get('cardImageBase64')?.value  }}</h2>
+              <h2>Tipo de publico: {{newEventForm.get('selectedModality')?.value }}</h2>
+              <p>Categorias: </p>
+              <p>Alcance: </p>
+              <p>Rango: </p>
+              <p>Publico: </p>
+            </div>
+              <p>Visualizacion de datos</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  </div>
+  <div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="staticBackdropLabel">Público Destino</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <h4>Añadir Categorias</h4>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check" *ngFor="let or of category; let i=index">
+                    <h3>{{or.nombre_interes}}</h3>
+                    <div class="form-check" *ngFor="let sub of or.subIntereses; let i=index">
+                      <input class="form-check-input" type="checkbox" value="{{or.nombre_interes}}" (change)="addCategory(sub)" >
+                      <label class="form-check-label">
+                        {{sub.nombre}}
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6">
+              <h4>Alcance</h4>
+              <div class="row">
+                <div class="form-check form-check-inline">
+                  <!-- <input class="form-check-input" type="radio" name="inlineRadioOptions" id="scope1" value="Edad" [(ngModel)]="selectedScope" (change)="cambiaPublico()"> -->
+                  <label class="form-check-label">Edad</label>
+                </div>
+                <div class="row">
+                  <div class="col-6" ><!--*ngIf="selectedScope === 'Edad'" -->
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="age1" (change)="addPublic('2')" (change)="onChangeY($event)" [disabled]="checkedO ? true: null">
+                      <label class="form-check-label" for="age1">
+                        16 - 30
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="age2" (change)="addPublic('3')" >
+                      <label class="form-check-label" for="age2">
+                        30 - 60
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="age3" (change)="addPublic('4')">
+                      <label class="form-check-label" for="age3">
+                        60 - 99
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check form-check-inline">
+                  <!-- <input class="form-check-input" type="radio" name="inlineRadioOptions" id="scope2" value="Público" [(ngModel)]="selectedScope" (change)="cambiaPublico()"> -->
+                  <label class="form-check-label" >Público</label>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-6"> <!--*ngIf="selectedScope === 'Público'"-->
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="student" (change)="addPublic2('2')">
+                    <label class="form-check-label" for="student">
+                      Estudiantes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="teacher" (change)="addPublic2('3')">
+                    <label class="form-check-label" for="teacher">
+                      Docente
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="thirdAge" (change)="addPublic2('4')" (change)="onChangeO($event)" [disabled]="checkedY ? true: null">
+                    <label class="form-check-label" for="thirdAge">
+                      Tercera Edad
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="administrative" (change)="addPublic2('5')">
+                    <label class="form-check-label" for="administrative">
+                      Administrativo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+          <button type="button" class="btn btn-primary" (click)="printcategoryaus()">Agregar</button>
+          <!-- al hacer click en agregar, que se muestre en pantalla -->
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+.card-deck{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .card{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    transition: all 0.3s ease-in-out;
+  }
+  .card:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  }
+  .card-img-top{
+    border-radius: 10px 10px 0px 0px;
+  }
+  .card-body{
+    text-align: center;
+  }
+  .card-title{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .card-text{
+    font-size: 15px;
+  }
+  .btn{
+    border-radius: 10px;
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  .btn:hover{
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+  .btn:active{
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+

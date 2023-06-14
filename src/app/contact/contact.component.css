@@ -1,0 +1,50 @@
+.contactanos-container {
+    background-image: url('https://www.ucb.edu.bo/wp-content/uploads/2020/08/Banner-Contacto-min.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 60px;
+  }
+  
+  h1 {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 54px;
+    color: #0f0d0d;
+  }
+  
+  .contactanos-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+  

@@ -1,0 +1,142 @@
+<div class="container">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <h1 class="bold-heading">Editar Perfil de Usuario</h1>
+    </blockquote>
+  </figure>
+  <mat-card flex flex-gt-xs="30">
+    <figure class="text-center">
+      <h3 class="bold-heading">Información del Usuario</h3>
+    </figure>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-4">
+          <div class="text-center">
+            <img src="{{datosPerfil.picture}}"  style="width: 225px; height:225px; margin: 0 0 20px" class="rounded">
+          </div>
+        </div>
+        <div class="col-8 ">
+          <div>
+          <figure class="text-center">
+            <h2 class="bold-heading">Datos Personales</h2>
+            <hr width="100%" color="black"/> 
+          </figure>
+          <form>
+            <div class="mb-3">
+              <label for="correo" class="form-label">Correo Electrónico Asociado a la Cuenta</label>
+              <input type="text" name="correo" [(ngModel)]="datosPerfil.email" class="form-control" id="correo" disabled>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="nombres" class="form-label">Nombres</label>
+                <input type="text" name="nombre" [(ngModel)]="datosPerfil.given_name" class="form-control" id="nombres" disabled>
+              </div>
+              <div class="mb-3 col-6">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input type="text" name="apellidos" [(ngModel)]="datosPerfil.family_name" class="form-control" id="apellidos" disabled>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="apodo" class="form-label">Apodo</label>
+                <input type="text" name="apodo" [(ngModel)]="datosPerfil.nickname" class="form-control" id="apodo">
+              </div>
+              <div class="mb-3 col-6">
+                <label for="nacimiento" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" name="nacimiento" [(ngModel)]="datosPerfil.birthday" class="form-control" id="nacimiento">
+              </div>
+              <!-- <div class="mb-3 col-6">
+                <label for="genero" class="form-label">Genero</label>
+                <select class="form-select" name="genero" [(ngModel)]="genero" class="form-control" id="genero" aria-label="Default select example">
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                </select>
+              </div> -->
+            </div>
+
+            <!--<div class="mb-3">
+              <label for="carrera" class="form-label">Carrera</label>
+              <input type="text" name="carrera" [(ngModel)]="datosPerfil.career" class="form-control" id="carrera" >
+            </div>-->
+            <div class="mb-3">
+              <label for="carrera" class="form-label">Carrera</label>
+              <select [(ngModel)]="majorSelected"class="form-select" aria-label="Disabled select example" name="carrera">
+                <option >Seleccione la carrera</option>
+                <option *ngFor="let m of carreras; let aux=index" [value]="m.id_carrera">{{m.carrera}}</option>
+                
+              </select>
+            </div>
+            <!--
+              Selected Value: {{majorSelected}}
+            -->
+            
+
+
+            <div class="mb-3">
+              <label  for="tipo_usuario" class="form-label">Tipo de Usuario</label>
+              <select [(ngModel)]="tipoSelected" class="form-select" aria-label="Disabled select example" name="tipo">
+                <option >Seleccione el tipo</option>
+                <option *ngFor="let dato of tipoUsuarios; let aux=index" [value]="dato.id">
+                  {{dato.nombre}}
+                </option>
+
+              </select>
+            </div>
+            
+            <!-- Selected Value: {{tipoSelected}}-->
+
+            <!-- <figure class="text-center">
+              <h2>Datos Domicilio</h2>
+            </figure>
+
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="zona" class="form-label">Zona</label>
+                <input type="text" name="zona" [(ngModel)]="zona" class="form-control" id="zona">
+              </div>
+              <div class="mb-3 col-6">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" name="direccion" [(ngModel)]="direccion" class="form-control" id="direccion">
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" name="telefono" [(ngModel)]="telefono" class="form-control" id="telefono">
+              </div>
+              <div class="mb-3 col-6">
+                <label for="correoPersonal" class="form-label">Correo Personal</label>
+                <input type="text" name="correoPersonal" [(ngModel)]="correoPersonal" class="form-control" id="correoPersonal">
+              </div>
+            </div> -->
+            <div class="flex-1 row justify-content-md-center">
+              <div class="d-grid col-6 text-center">
+                <button class="btn btn-primary" type="button" (click)="confirmationPerfilUpdate()">Guardar Cambios</button>
+              </div>
+            </div>
+          </form>
+          </div>
+
+
+          <div class="container custom-divider" style="padding-top: 1rem;">
+            <figure class="text-center">
+              <h2 class="bold-heading">Intereses</h2>
+            </figure>
+            <div>
+              <ul class="list-interest">
+                <li *ngIf="intereses.length === 0">El usuario no tiene intereses registrados.</li>
+                <li *ngFor="let interest of intereses"><h3 style="font-weight: bold; ">{{interest.nombre}}</h3></li>
+              </ul>
+            </div>
+            <div class="flex-1 row justify-content-md-center">
+              <div class="d-grid  col-6">
+                <button class="btn btn-primary " type="button" (click)="openEdit(datosPerfil.userid)">Editar intereses</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

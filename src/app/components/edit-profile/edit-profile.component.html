@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col" *ngFor="let interest of interests">
+    <div class="category-container">
+      <div class="category-card">
+        <img src="{{interest.image_url}}" alt="Categoría 1" />
+
+        <h2>{{interest.name}}</h2>
+        <!-- <a class="btn btn-primary" routerLink="/select-interest/{{interest.name}}">Ver más</a> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,222 @@
+<div class="container">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <h1>Agregar Publicaciones</h1>
+    </blockquote>
+  </figure>
+    <div class="row" >
+      <div class="col-6">
+        <mat-card flex flex-gt-xs="30">
+          <figure class="text-center">
+            <h2>Información de la Publicación</h2>
+          </figure>
+          <mat-card-content>
+            <form>
+              <div class="mb-3">
+                <label for="titlePost" class="form-label">Título</label>
+                <input type="text" name="titulo" [(ngModel)]="titulo" class="form-control" id="titlePost" placeholder="Agregue el título de la publicación">
+              </div>
+              <div class="mb-3">
+                <label for="subtitlePost" class="form-label">Subtítulo</label>
+                <input type="text" name="subtitulo" [(ngModel)]="subtitulo" class="form-control" id="subtitlePost" placeholder="Agregue el subtítulo de la publicación">
+              </div>
+              <div class="mb-3">
+                <label for="descriptionPost" class="form-label">Descripción</label>
+                <textarea name="descripcion" [(ngModel)]="descripcion" class="form-control" id="descriptionPost" rows="5" placeholder="Agregue la descripción de la publicación"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="imagesPost" class="form-label">Subir Imágenes</label>
+                <input class="form-control" type="file" id="imagesPost" multiple accept="image/png, .jpeg, .jpg" (change)="imagenmod($event)">
+                <img [src]="cardImageBase64" [width]="300" />
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Agregar Público Destino
+                </button>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-success" type="button">Agregar Publicación</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-6">
+        <mat-card flex >
+          <figure class="text-center">
+            <h2>Vista Previa</h2>
+          </figure>
+          <mat-card-content>
+            <div>
+              <figure class="text-center">
+                <img [src]="cardImageBase64" style="width: auto; height: 250px;  margin: 0 0 20px" />
+              </figure>
+              <h1> Titulo: {{titulo}}</h1>
+              <h2>Subtitulo: {{subtitulo}}</h2>
+              <p>Descripción: </p>
+              <p>{{descripcion}}</p>
+              <p>Categorias: {{cultura}} {{arte}} {{deporte}} {{educacion}} {{cursos}} {{formacion}} {{otro}}</p>
+              <p>Alcance: {{alcance}}</p>
+              <p>Rango: {{rango1}} {{rango2}} {{rango3}}</p>
+              <p>Publico: {{estudiantes}} {{docentes}} {{tercera_edad}} {{administrativo}}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  </div>
+  <div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="staticBackdropLabel">Público Destino</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <h4>Añadir Categorias</h4>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check" *ngFor="let or of category; let i=index">
+                    <input class="form-check-input" type="checkbox" value="" >
+                    <label class="form-check-label">
+                      {{or.nombre_interes}}
+                    </label>
+                  </div>
+                  <!--
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="cultura" id="culture" name="cultura" [(ngModel)]="cultura">
+                    <label class="form-check-label" for="culture">
+                      Cultura
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Arte" id="art" name="arte" [(ngModel)]="arte">
+                    <label class="form-check-label" for="art">
+                      Arte
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Deporte" id="sport" name="deporte" [(ngModel)]="deporte">
+                    <label class="form-check-label" for="sport">
+                      Deporte
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Educación" id="education" name="educacion" [(ngModel)]="educacion">
+                    <label class="form-check-label" for="education">
+                      Educación
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Cursos" id="courses" name="cursos" [(ngModel)]="cursos">
+                    <label class="form-check-label" for="courses">
+                      Cursos
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Formación Humanística" id="humanisticFormation" name="formacion" [(ngModel)]="formacion">
+                    <label class="form-check-label" for="humanisticFormation">
+                      Formación Humanística
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Otros" id="other" name="otro" [(ngModel)]="otro">
+                    <label class="form-check-label" for="other">
+                      Otro
+                    </label>
+                  </div>
+                  -->
+                </div>
+              </div>
+              <h4>Categorías más utilizadas</h4>
+              <div class="row">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="Categoría 1" id="firstCheckbox" name="categoria1" [(ngModel)]="categoria1">
+                    <label class="form-check-label" for="firstCheckbox">Categoría 1</label>
+                  </li>
+                  <li class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="Categoría 2" id="secondCheckbox" name="categoria2" [(ngModel)]="categoria2">
+                    <label class="form-check-label" for="secondCheckbox">Categoría 2</label>
+                  </li>
+                  <li class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="Categoria 3" id="thirdCheckbox" name="categoria3" [(ngModel)]="categoria3">
+                    <label class="form-check-label" for="thirdCheckbox">Categoría 3</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-6">
+              <h4>Alcance</h4>
+              <div class="row">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Edad" name="alcance" [(ngModel)]="alcance" >
+                  <label class="form-check-label" for="inlineRadio1">Edad</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Público" name="alcance" [(ngModel)]="alcance">
+                  <label class="form-check-label" for="inlineRadio2">Público</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6" *ngIf="alcance === 'Edad'">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="age1" name="rango1" [(ngModel)]="rango1">
+                    <label class="form-check-label" for="age1">
+                      16 - 30
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="age2" name="rango2" [(ngModel)]="rango2">
+                    <label class="form-check-label" for="age2">
+                      30 - 60
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="age2" name="rango3" [(ngModel)]="rango3">
+                    <label class="form-check-label" for="age2">
+                      60 - 99
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6" *ngIf="alcance === 'Público'">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Estudiantes" id="student" name="estudiantes" [(ngModel)]="estudiantes">
+                    <label class="form-check-label" for="student">
+                      Estudiantes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Docentes" id="teacher" name="docentes" [(ngModel)]="docentes">
+                    <label class="form-check-label" for="teacher">
+                      Docente
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Tercera Edad" id="thirdAge" name="tercera_edad" [(ngModel)]="tercera_edad">
+                    <label class="form-check-label" for="thirdAge">
+                      Tercera Edad
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Administrativo" id="administrative" name="administrativo" [(ngModel)]="administrativo">
+                    <label class="form-check-label" for="administrative">
+                      Administrativo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

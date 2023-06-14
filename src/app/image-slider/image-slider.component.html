@@ -1,0 +1,9 @@
+<div class="slider-container">
+  <div class="slider" [ngStyle]="{'transform': 'translateX(' + (-currentIndex * slideWidth) + 'px)'}">
+    <div class="slide" *ngFor="let image of images; let i = index" [ngStyle]="{'width': slideWidth + 'px'}">
+      <img [src]="image" alt="">
+    </div>
+  </div>
+  <div class="arrow arrow-left" (click)="prevSlide()">&lt;</div>
+  <div class="arrow arrow-right" (click)="nextSlide()">&gt;</div>
+</div>

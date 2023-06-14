@@ -1,0 +1,161 @@
+
+
+<div class="bg-blue-200" >
+  <!-- <button type="button" class="btn-close" aria-label="Close" style="float: right;" (click)="close()" ></button>
+  <h1 class="text-x1">Vista Previa de la publicacion</h1>
+    <p>ES ES UNA PRUEBA DEL CAMBIO DE COMPONENT </p>-->
+
+
+
+<!-- <div class="panel"> -->
+    <!-- <form (ngSubmit)="onSubmit()" #myForm="ngForm" class="form-horizontal"> -->
+
+      <!-- <div class="row">
+        <label> Datos del Docente que esta a Cargo</label>
+
+        <div class="form-group col-6">
+          <label for="title">Nombres</label>
+          <input type="text" id="nameInChargeId" name="nameInCharge" [(ngModel)]="nameInCharge" required class="form-control">
+        </div>
+
+        <div class="form-group col">
+          <label for="title">Apellido Paterno</label>
+          <input type="text" id="paternalSurnameId" name="paternalSurname" [(ngModel)]="paternalSurname" required class="form-control">
+        </div>
+
+        <div class="form-group col">
+          <label for="title">Apellido Materno</label>
+          <input type="text" id="maternalSurnameId" name="maternalSurname" [(ngModel)]="maternalSurname" required class="form-control">
+        </div>
+
+      </div>
+
+
+      <div class="row">
+        <label> Datos del Docente que esta a Cargo</label>
+
+        <div class="form-group col">
+          <label for="title">Carrera</label>
+          <input type="text" id="nameInChargeId" name="nameInCharge" [(ngModel)]="nameInCharge" required class="form-control">
+        </div>
+
+        <div class="form-group col">
+          <label for="title">Departamento</label>
+          <input type="text" id="paternalSurnameId" name="paternalSurname" [(ngModel)]="paternalSurname" required class="form-control">
+        </div>
+
+        <div class="form-group col">
+          <label for="title">Sede</label>
+          <input type="text" id="maternalSurnameId" name="maternalSurname" [(ngModel)]="maternalSurname" required class="form-control">
+        </div>
+
+      </div> -->
+
+      <!-- <div class="row">
+
+        <div class="form-group col-md-4">
+          <label for="photo">Photo:</label>
+          <input type="file" id="photo" name="photo" [(ngModel)]="photo" required class="form-control-file">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="location">Fecha de Publicaion</label>
+          <input type="date" id="location" name="location" [(ngModel)]="location" required class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="date">Fecha del evento</label>
+          <input type="date" id="date" name="date" [(ngModel)]="date" required class="form-control">
+        </div>
+
+       </div> -->
+
+
+
+      <!-- <div class="row">
+
+        <div class="form-group col-md-4">
+          <label for="title">Titulo de la publicacion</label>
+          <input type="text" id="titleEventId" name="titleEvent" [(ngModel)]="titleEvent" required class="form-control">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="title">Subtitulo</label>
+          <input type="text" id="titleEventId" name="titleEvent" [(ngModel)]="titleEvent" required class="form-control">
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label for="description">Descripcion</label>
+          <input type="text" id="descriptionEventId" name="descriptionEventId" [(ngModel)]="descriptionEvent" required class="form-control">
+        </div>
+
+      </div>
+  </form> -->
+
+
+<!-- </div> -->
+
+
+<div class="panel1">
+
+  <h1 class="title-viewpost">VISTA PREVIA DE LA APLICACION PARA EL PUBLICO</h1>
+
+
+  <section class="post">
+    <h4>Solicitud: {{solicitudId}}</h4>
+    <div class="post__header">
+      <div class="post__header__avatar">
+        <h1 style="padding-bottom: 30px;"> Título: {{ preview.titulo }}</h1>
+        <!-- <h2 class="postSubtitle">Subtitulo</h2> -->
+        <!-- <h3>Imagen: </h3>-->
+        <img class="postImage" [src]="'http://localhost:8080/solicitud/imagen4/'+ preview.id_imagen"  alt="avatar"> 
+
+        <!-- <h3>Imagen: {{this.path}}</h3> -->
+        <!-- <img class="postImage" src="{{this.path}}"> -->
+
+
+        <p class="postDescripction">
+          Descripción: {{ preview.descripcion }}
+        </p>
+      </div>
+      <div class="post__header__info">
+      </div>
+
+    </div>
+
+<!-- proximamente a implementar  -->
+
+
+    <!-- <div class="post__footer">
+      <div class="post__footer__actions">
+        <button class="post__footer__actions__btn">Compartir</button>
+        <button class="post__footer__actions__btn">Me gusta</button>
+      </div>
+    </div> -->
+
+  </section>
+
+  <div className=" historial">
+    <h2>HISTORIAL DE COMENTARIOS</h2>
+    <div *ngFor="let comentario of comentarios">
+      <ul>
+        <div class="row">
+          <h4>Comentario: {{comentario.comentario}}</h4>
+        </div>
+      </ul>
+    </div>
+    
+  </div>
+
+</div>
+
+
+<!-- <button class="btn btn-success" type="submit" (click)="postEvent(titlePost.value, descriptionPost.value, lldata)">Agregar Publicación</button>
+              </div> -->
+
+
+<div class="text-center" >
+  <button type="button" class="btn btn-success mx-2" (click)="aceptada(solicitudId)"> Aceptar</button>
+  <button type="button" class="btn btn-danger mx-2" (click)="rechazada(solicitudId)">Rechazar</button>
+  <button name="{{ solicitudId}}" class="btn btn-warning mx-2" (click)="openModifyPostDialog()">Solicitar modificación</button>
+</div>
+</div>

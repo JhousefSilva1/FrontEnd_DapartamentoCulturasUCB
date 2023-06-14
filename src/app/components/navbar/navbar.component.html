@@ -1,0 +1,137 @@
+<!--
+
+<div class="slider">
+  <div class="slider-container">
+    <img [src]="images[currentSlide]" alt="Imagen del carrusel">
+
+  <div class="slider-indicators">
+    <div class="indicator-container">
+      <span *ngFor="let image of images; let i=index"
+            [ngClass]="{'active': i === currentSlide}"
+            (click)="goToSlide(i)"></span>
+
+    </div>
+</div>
+  </div>
+
+
+  <div class="slider-controls">
+    <button (click)="prevSlide()">Anterior</button>
+    <button (click)="nextSlide()">Siguiente</button>
+  </div>
+</div>
+ -->
+
+
+ <div class="slider">
+  <div class="slider-container">
+    <img [src]="images[currentSlide]" alt="Imagen del carrusel">
+  </div> <!-- cierra slider-container -->
+
+  <div class="slider-indicators">
+    <div class="indicator-container">
+      <span *ngFor="let image of images; let i=index"
+            [ngClass]="{'active': i === currentSlide}"
+            (click)="goToSlide(i)"></span>
+    </div>
+  </div>
+
+  <!-- <div class="slider-controls">
+    <button (click)="prevSlide()">Anterior</button>
+    <button (click)="nextSlide()">Siguiente</button>
+  </div> -->
+</div>
+
+
+
+<mat-toolbar class="nav" color="primary">
+  <mat-toolbar-row>
+    <button class="btn-inicio" mat-button [matMenuTriggerFor]="inicio">Inicio</button>
+    <mat-menu  #inicio="matMenu">
+      <button mat-menu-item routerLink="/add-events"> Nuevos </button>
+      <button mat-menu-item routerLink="/recomm-posts"> Recomendados </button>
+      <button mat-menu-item [matMenuTriggerFor]="categorias"> Categoria
+        <mat-menu  #categorias="matMenu" >
+          <button mat-menu-item routerLink="/add-events"> titulo1 </button>
+          <button mat-menu-item routerLink="/add-posts"> titulo2 </button>
+          <button mat-menu-item routerLink="/add-posts"> titulo 3 </button>
+        </mat-menu>
+      </button>
+
+    </mat-menu>
+
+    <button style="padding-left: 20px;" class="btn-item" mat-button routerLink="/panel">Panel</button>
+
+    <button style="padding-left: 20px;" class="btn-item" [matMenuTriggerFor]="profile" mat-button>Perfil</button>
+    <mat-menu  #profile="matMenu">
+      <!--<button mat-menu-item routerLink="/profile"> Ver Perfil </button>-->
+      <button mat-menu-item routerLink="/edit-profile"> Ver Perfil </button>
+    </mat-menu>
+
+    <button style="padding-left: 20px;" class="btn-item" mat-button [matMenuTriggerFor]="menu">Formularios</button>
+    <mat-menu  #menu="matMenu">
+      <button mat-menu-item routerLink="/add-events"> Eventos </button>
+      <button mat-menu-item routerLink="/add-posts"> Publicaciones </button>
+    </mat-menu>
+
+    <button style="padding-left: 20px;" class="btn-item" mat-button>Intereses</button>
+    <button style="padding-left: 20px;" routerLink="/modificaciones" class="btn-item" mat-button>Mis Publicaciones</button>
+
+    <button style="padding-left: 20px;" routerLink="/description" class="btn-item" mat-button>Quienes Somos?</button>
+
+    <button style="padding-left: 20px;" class="btn-item" mat-button>Eventos</button>
+
+    <button style="padding-left: 20px;" routerLink="/contact" class="btn-item" mat-button>Contacto</button>
+
+    <!--<span class="spacer"></span>
+    <button class="btn-item" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>-->
+    <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+    <button (click)="cerrarSesion()" style="padding-left: 20px;" class="btn-item" mat-button>
+    Log Out
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

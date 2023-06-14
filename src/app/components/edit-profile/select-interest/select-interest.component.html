@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h1>Subcategorias</h1>
+  <ul class="list-group" *ngFor="let subInterest of subInterests">
+      <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+        <label class="form-check-label" for="firstCheckbox">{{subInterest.name}}</label>
+      </li>
+  </ul>
+    <br><br>
+    <div>
+      
+      <button type="submit" class="btn btn-primary" routerLink="/edit-profile">Guardar</button>
+      &nbsp;&nbsp;&nbsp;<a class="btn btn-warning" routerLink="/edit-profile">Volver</a>
+    </div>
+</div>
+<br><br>

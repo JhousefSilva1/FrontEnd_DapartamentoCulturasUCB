@@ -1,0 +1,80 @@
+<div class="container">
+  <h1>MIS PUBLICACIONES</h1>
+  <div class="card-container">
+    <div class="card" *ngFor="let publicacion of publicaciones" (click)="abrirModal(publicacion.solicitudid)">
+      <img src="{{ publicacion.imagen }}" alt="{{ publicacion.titulo }}">
+      <div class="card-content">
+        <h2>Título: {{ publicacion.descripcion }}</h2>
+        <h5>Fecha de Solicitud: {{obtenerFecha1(publicacion.fecha_solicitud)}} </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="modalVisible">
+  <div class="modal-content">
+    <h2>{{ publi.solcitudid }}</h2>
+    <form>
+      <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" [(ngModel)]="publi.titulo" name="titulo" required>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" [(ngModel)]="publi.descripcion" name="descripcion" required></textarea>
+      </div>
+      <div class="form-group" *ngIf="publi.lugar === '' ">
+        <label for="link" class="form-label">Link</label>
+        <input type="text" class="form-control" id="link" placeholder="Agregue el link del evento" name="link" [(ngModel)]="publi.link" required>
+      </div>
+      <div class="form-group" *ngIf="publi.link === '' ">
+        <label for="location" class="form-label">Lugar</label>
+        <input type="text" class="form-control" id="location" placeholder="Agregue la ubicación del evento" name="lugar" [(ngModel)]="publi.lugar" required>
+      </div>
+
+      <img class="postImage" [src]="'http://localhost:8080/solicitud/imagen4/'+ publi.id_imagen" style="width: 300px; height: 200px;"  alt="avatar">
+      <br>
+      <!-- <div class="form-group">
+        <label for="edad">Edad:</label>
+        <select id="edad" [(ngModel)]="publicacionSeleccionada.edad" name="edad" (change)="mostrarRangosEdad()" required>
+          <option value="16-30">16-30</option>
+          <option value="31-60">31-60</option>
+          <option value="61+">61+</option>
+        </select>
+      </div> -->
+
+
+      <!--<div class="form-group" *ngIf="publicacionSeleccionada.edad === '16-30'">
+        <label>Rango de edad seleccionado: 16-30</label>
+        <input type="checkbox" id="checkbox1" name="checkbox1">
+        <label for="checkbox1">Checkbox 1</label>
+      </div>
+
+      <div class="form-group" *ngIf="publicacionSeleccionada.edad === '31-60'">
+        <label>Rango de edad seleccionado: 31-60</label>
+        <input type="checkbox" id="checkbox2" name="checkbox2">
+        <label for="checkbox2">Checkbox 2</label>
+      </div>
+
+      <div class="form-group" *ngIf="publicacionSeleccionada.edad === '61+'">
+        <label>Rango de edad seleccionado: 61+</label>
+        <input type="checkbox" id="checkbox3" name="checkbox3">
+        <label for="checkbox3">Checkbox 3</label>
+      </div>-->
+
+      <!-- <div class="form-group">
+        <label for="publico">Público:</label>
+        <select id="publico" [(ngModel)]="publicacionSeleccionada.publico" name="publico" required>
+          <option value="general">General</option>
+          <option value="adulto">Adulto</option>
+          <option value="infantil">Infantil</option>
+        </select>
+      </div>-->
+      <button className="btng" type="submit" (click)="guardarCambios()">Guardar</button>
+    </form>
+    <button (click)="cerrarModal()">Cerrar</button>
+  </div>
+</div>
+
+
+

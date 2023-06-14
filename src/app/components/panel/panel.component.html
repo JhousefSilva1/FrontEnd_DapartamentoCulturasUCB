@@ -1,0 +1,123 @@
+<div class="panel" xmlns:cursor="http://www.w3.org/1999/xhtml">
+  <h2 class="title-panel" >Solicitudes</h2>
+  <!--<select class="form-select" style="font-size: 20px; margin-left: 1020px; max-width: max-content;">
+    <option value="aprobado" (click)="filtrar('1')">Aprobado</option>
+    <option value="rechazado">Rechazado</option>
+  </select>-->
+
+  <button class="btn btn-danger mx-2" style="font-size: 20px; margin-left: 750px;"(click)="filtrar(2)">Rechazado</button>
+  <button class="btn btn-success mx-2" style="font-size: 20px;" (click)="filtrar(1)">Aprobado</button>
+  <button class="btn btn-warning mx-2" style="font-size: 20px;" (click)="filtrar(0)">Pendiente</button>
+  <div class="date-filter">
+    <mat-form-field style="font-size: 20px;margin-top: 20px; width: max-content; height: max-content;">
+      <mat-label style="font-size: 20px;">Fecha inicio:</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="selectedStartDate">
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field style="font-size: 20px;margin-top: 20px; width: max-content; height: max-content;">
+      <mat-label style="font-size: 20px;">Fecha fin:</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="selectedEndDate">
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+  
+    <button class="btn btn-primary mx-2" (click)="filtrarPorFechasSolicitud()" style="font-size: 20px;">Filtrar Solicitud</button>
+    <button class="btn btn-primary mx-2" (click)="filtrarPorFechasRevisado()" style="font-size: 20px;">Filtrar Revisado</button>
+  </div>
+  <!-- <div>
+    <button (click)="null">Aceptar  </button>
+    <button (click)="null">Rechazar</button>
+  </div> -->
+  <!--<th class="th-ind-num" >Número</th>
+       <th class="th-ind-detalle">Descripción</th>
+       <th class="th-ind-fecha">Fecha Solicitud</th>
+       <th class="th-ind-fecha">Fecha Revisado</th>
+       <th class="th-ind-detalle">Detalle</th>
+       <th class="th-ind">Estado</th>-->
+
+  <table class="table" >
+    <thead class="text-center align-middle">
+      <tr class="tr-colum-indicadores">
+        <th class="th-ind-num" (click)="sortTable('solicitudid')">
+          Número
+          <span >
+            <i class="fa fa-chevron-{{sortDirection === 'asc' ? 'up' : 'down'}}" style="font-size:15px; cursor: pointer;"></i>
+          </span>
+        </th>
+        <th class="th-ind-detalle" (click)="sortTable('descripcion')">
+          Descripción
+          <span >
+            <i class="fa fa-chevron-{{sortDirection === 'asc' ? 'up' : 'down'}}" style="font-size:15px; cursor: pointer;"></i>
+          </span>
+        </th>
+        <th class="th-ind-fecha" (click)="sortTable('fecha_solicitud')">
+          Fecha Solicitud
+          <span >
+            <i class="fa fa-chevron-{{sortDirection === 'asc' ? 'up' : 'down'}}" style="font-size:15px; cursor: pointer;"></i>
+          </span>
+        </th>
+        <th class="th-ind-fecha" (click)="sortTable('fecha_revisado')">
+          Fecha Revisado
+          <span >
+            <i class="fa fa-chevron-{{sortDirection === 'asc' ? 'up' : 'down'}}" style="font-size:15px; cursor: pointer;"></i>
+          </span>
+        </th>
+        <th class="th-ind-detalle">Detalle</th>
+
+        <th class="th-ind" (click)="sortTable('estado')" style="max-height: max-content; max-width: max-content">
+          Estado
+          <span >
+            <i class="fa fa-chevron-{{sortDirection === 'asc' ? 'up' : 'down'}}" style="font-size:15px; cursor: pointer;"></i>
+          </span>
+        </th>
+
+        <th class="th-ind" (click)="sortTable('audiencia')" style="max-height: max-content; max-width: max-content">
+          Audiencia
+          <span >
+            <i class="fa fa-chevron-{{sortDirection === 'asc' ? 'up' : 'down'}}" style="font-size:15px; cursor: pointer;"></i>
+          </span>
+        </th>
+
+      </tr>
+    </thead>
+
+    <tbody class="text-center align-middle">
+      <tr class="tr-solicitudes" *ngFor="let solicitud of solicitudes  | paginate: { itemsPerPage: 10, currentPage: page }" [ngClass]="solicitud.referencia">
+
+        <td class="tr-cont-num">{{ solicitud.solicitudid }}</td>
+        <td style="text-align: justify"class="tr-cont">{{ solicitud.descripcion }}</td>
+        <td class="tr-cont">{{ obtenerFecha1(solicitud.fecha_solicitud) }}</td>
+        <td class="tr-cont">{{ obtenerFecha1(solicitud.fecha_revisado) }}</td>
+
+        <!-- <td class="tr-cont">{{ solicitud.asunto }}</td> -->
+        <!-- <td class="tr-cont">{{ obtenerFecha(solicitud.fecha) }}</td>
+        <td class="tr-cont">{{ solicitud.hora }}</td> -->
+
+         <!-- Cambie openPopup() por openDialog  -->
+
+        <td><button name="{{solicitud.solicitudid}}" class="btn-view-Detail"  (click)="openDialog(solicitud.solicitudid )">Ver Detalle</button></td>
+        <td class="tr-cont" style="font-style: italic; font-size:18px; font-weight: bold;"[ngClass]="getEstadoClass(solicitud.estado) ">
+          <ng-container *ngIf="solicitud.estado === 1;">Aprobado</ng-container>
+          <ng-container *ngIf="solicitud.estado === 2;">Rechazado</ng-container>
+          <ng-container *ngIf="solicitud.estado === 0;">Pendiente</ng-container>
+        </td>
+        <td class="tr-cont" style="font-style: italic; font-size:18px; font-weight: bold;">{{solicitud.publico}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <div class="text-center mt-3" style="font-size:35px;">
+      <pagination-controls
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
+
+
+
+</div>

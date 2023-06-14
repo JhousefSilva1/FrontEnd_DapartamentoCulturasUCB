@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="ll-section-head text-center">
+      <h2 class="ll-section-head__heaidng">Publicaciones recomendadas</h2>
+    </div>
+    <div class="grid grid-cols-6 gap-6 xxl:gap-6">
+      <div *ngFor="let post of posts | paginate: { itemsPerPage: 3, currentPage: page }"  class="col-span-6 md:col-span-6 xl:col-span-2">
+        <mat-card class="ll-post mt-3">
+          <mat-card-content class="flex">
+            <div class="row">
+              
+              
+              <!-- <div class="col-6 mt-1 text-center" *ngIf="post.image">
+                <img mat-card-image [src]="post.image"  style="width: 250px; height:250px; margin: 0 0 20px" />
+              </div> -->
+              <div class="col-6 mt-1 text-center" >
+                <img [src]="'http://localhost:8080/solicitud/imagen4/'+ post.id_imagen"  style="width: 250px; height:250px; margin: 0 0 20px" />
+              </div>
+              <div class="col-6 mt-1">
+                <h1 class="ll-post__title text-primary text-center">
+                  {{ post.titulo }}
+                </h1>
+                <div class="flex justify-between mt-3">
+                  <h4 class="ll-post_description-label text-success">Breve descripción:</h4>
+                  
+                  <div class="ll-post_description text-accent" class="text">{{  post.descripcion }}</div>
+                </div>
+                <div class="flex justify-between mt-3">
+                  <h4 class="ll-post_description-label text-success">Lugar:</h4>
+                  
+                  <div class="ll-post_description text-accent" class="text">{{  post.lugar }}</div>
+                </div>
+                <div class="flex justify-between mt-3">
+                  <h4 class="ll-post_description-label text-success">Fecha:</h4>
+                  
+                  <div class="ll-post_description text-accent" class="text">{{ obtenerFecha1(post.date) }}</div>
+                </div>
+                <div class="flex justify-between mt-3">
+                  <h4 class="ll-post_description-label text-success">SubIntereses:</h4>
+                  
+                  <div class="ll-post_description text-accent" *ngFor="let sub of post.subInteresesDTOS" class="text">{{ sub.nombre }}</div>
+                </div>
+                <!-- QUITAREMOS LA FECHA DE MOMENTO, NO HAY EN LA BASE DE DATOS -->
+                <!-- <div class="flex justify-between mt-3">
+                  <h4 class="ll-post_date-label text-success">Fecha: </h4>
+                  <div class="ll-post_date-label">{{ post.fecha }}</div>
+                </div> -->
+                <div class="flex-1 text-center">
+                  <a  routerLink="/posts/{{post.ep_id}}" mat-raised-button color="primary" class="px-4" (click)="viewPost(post.ep_id)">Ver mas</a>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+
+        </mat-card>
+      </div>
+      <div class="text-center mt-3">
+        <pagination-controls
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente">
+        </pagination-controls>
+      </div>
+    </div>
+</div>

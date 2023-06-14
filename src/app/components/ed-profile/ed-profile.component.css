@@ -1,0 +1,16 @@
+.list-interest{
+    display: flex;
+    flex-direction: row;
+    padding-left: 0px;
+}
+li{
+    list-style: none;
+    margin-right: 20px;
+}
+.bold-heading {
+  font-weight: bold;
+}
+.custom-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.338);
+  margin: 10px 0;
+}
